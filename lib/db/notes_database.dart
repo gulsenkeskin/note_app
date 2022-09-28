@@ -1,5 +1,8 @@
 import 'package:note_app/model/note.dart';
 import 'package:sqflite/sqflite.dart';
+import 'dart:async';
+import 'dart:io';
+import 'package:path/path.dart';
 
 class NotesDatabase {
   //constructor'u çağıran instance
@@ -41,10 +44,30 @@ class NotesDatabase {
     ${NoteFields.number} $integerType,
     ${NoteFields.title} $textType,
     ${NoteFields.description} $textType,
-    ${NoteFields.time} $textType,
-    
+    ${NoteFields.time} $textType, 
     )
     ''');
+  }
+
+  Future<Note> create(Note note) async{
+    //veri tabanına referans
+    final db= await instance.database;
+
+    //db.insert'ün yaptığı işle aynı
+/*    final json=note.toJson();
+    final columns='${NoteFields.title}, ${NoteFields.description}, ${NoteFields.time}';
+
+    final values='${json[NoteFields.title]}, ${json[NoteFields.description]}, ${json[NoteFields.time]}';
+
+    final id= await db.rawInsert('INSERT INTO table_name ($columns) VALUES ($values)');*/
+
+
+    //eklemek istediğimiz tabloyu tanımlamamız gerekiyor
+    final id= await db.insert(tableNotes, note.toJson());
+    return note.copy(id:id);
+
+
+
   }
 
   Future close() async {
