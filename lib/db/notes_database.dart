@@ -36,7 +36,7 @@ class NotesDatabase {
     final maps = await db.query(
       tableNotes,
       columns: NoteFields.values,
-      where: '${NoteFields.id}= ?',
+      where: '${NoteFields.id} = ?',
       whereArgs: [id],
     );
 
@@ -56,6 +56,19 @@ class NotesDatabase {
 
     final result = await db.query(tableNotes, orderBy: orderBy);
     return result.map((json) => Note.fromJson(json)).toList();
+  }
+
+  Future<int> update(Note note) async {
+    final db = await instance.database;
+
+    return db.update(
+        //güncellenmesini istediğimiz tablo adı
+        tableNotes,
+        //günncellenecek alanlar
+        note.toJson(),
+        //hangi nesneyi güncellemek istediğimizi belirtiriz
+        where: '${NoteFields.id} = ?',
+        whereArgs: [note.id]);
   }
 
   Future _createDB(Database db, int version) async {
