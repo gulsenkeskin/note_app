@@ -30,11 +30,30 @@ class NotesDatabase {
     return await openDatabase(path, version: 1, onCreate: _createDB);
   }
 
+  Future<Note> readNote(int id) async {
+    final db = await instance.database;
+
+    final maps = await db.query(
+      tableNotes,
+      columns: NoteFields.values,
+      where: '${NoteFields.id}= ?',
+      whereArgs: [id],
+    );
+
+    if(maps.isNotEmpty){
+      //boş değilse map'i json objesine dönüüştür
+      return Note.fromJson(maps.first);
+
+    }else{
+      throw Exception('ID $id not found');
+    }
+  }
+
   Future _createDB(Database db, int version) async {
-    final idType='INTEGER PRIMARY KEY AUTOINCREMENT';
-    final textType="TEXT NOT NULL";
-    final boolType='BOOLEAN NOT NULL';
-    final integerType="INTEGER NOT NULL";
+    final idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
+    final textType = "TEXT NOT NULL";
+    final boolType = 'BOOLEAN NOT NULL';
+    final integerType = "INTEGER NOT NULL";
 
     //veri tabanı tablosu oluşturmak için
     await db.execute('''
@@ -49,9 +68,9 @@ class NotesDatabase {
     ''');
   }
 
-  Future<Note> create(Note note) async{
+  Future<Note> create(Note note) async {
     //veri tabanına referans
-    final db= await instance.database;
+    final db = await instance.database;
 
     //db.insert'ün yaptığı işle aynı
 /*    final json=note.toJson();
@@ -61,13 +80,9 @@ class NotesDatabase {
 
     final id= await db.rawInsert('INSERT INTO table_name ($columns) VALUES ($values)');*/
 
-
     //eklemek istediğimiz tabloyu tanımlamamız gerekiyor
-    final id= await db.insert(tableNotes, note.toJson());
-    return note.copy(id:id);
-
-
-
+    final id = await db.insert(tableNotes, note.toJson());
+    return note.copy(id: id);
   }
 
   Future close() async {
