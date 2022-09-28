@@ -71,6 +71,13 @@ class NotesDatabase {
         whereArgs: [note.id]);
   }
 
+  Future<int> delete(int id) async {
+    final db = await instance.database;
+
+    return await db
+        .delete(tableNotes, where: '${NoteFields.id} = ?', whereArgs: [id]);
+  }
+
   Future _createDB(Database db, int version) async {
     final idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
     final textType = "TEXT NOT NULL";
