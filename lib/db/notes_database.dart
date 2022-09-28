@@ -40,13 +40,19 @@ class NotesDatabase {
       whereArgs: [id],
     );
 
-    if(maps.isNotEmpty){
+    if (maps.isNotEmpty) {
       //boş değilse map'i json objesine dönüüştür
       return Note.fromJson(maps.first);
-
-    }else{
+    } else {
       throw Exception('ID $id not found');
     }
+  }
+
+  Future<List<Note>> readAllNotes() async {
+    final db = await instance.database;
+    final orderBy = '${NoteFields.time} ASC';
+    final result = await db.query(tableNotes, orderBy: orderBy);
+    return result.map((json) => Note.fromJson(json)).toList();
   }
 
   Future _createDB(Database db, int version) async {
