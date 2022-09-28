@@ -1,3 +1,4 @@
+import 'package:note_app/model/note.dart';
 import 'package:sqflite/sqflite.dart';
 
 class NotesDatabase {
@@ -27,7 +28,23 @@ class NotesDatabase {
   }
 
   Future _createDB(Database db, int version) async {
+    final idType='INTEGER PRIMARY KEY AUTOINCREMENT';
+    final textType="TEXT NOT NULL";
+    final boolType='BOOLEAN NOT NULL';
+    final integerType="INTEGER NOT NULL";
+
     //veri tabanı tablosu oluşturmak için
+    await db.execute('''
+    CREATE TABLE $tableNotes (
+    ${NoteFields.id} $idType,
+    ${NoteFields.isImportant} $boolType,
+    ${NoteFields.number} $integerType,
+    ${NoteFields.title} $textType,
+    ${NoteFields.description} $textType,
+    ${NoteFields.time} $textType,
+    
+    )
+    ''');
   }
 
   Future close() async {
