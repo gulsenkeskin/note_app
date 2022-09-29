@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:note_app/model/note.dart';
 
-class EditNotePage extends StatefulWidget {
-  const EditNotePage({Key? key}) : super(key: key);
+class AddEditNotePage extends StatefulWidget {
+  final Note? note;
+  const AddEditNotePage({Key? key, this.note}) : super(key: key);
 
   @override
-  State<EditNotePage> createState() => _EditNotePageState();
+  State<AddEditNotePage> createState() => _AddEditNotePageState();
 }
 
-class _EditNotePageState extends State<EditNotePage> {
+class _AddEditNotePageState extends State<AddEditNotePage> {
   @override
   Widget build(BuildContext context) {
     return Container(
