@@ -1,4 +1,4 @@
-# Note App
+# Note App Sqflite CRUD | Android & iOS
 
 
 <img src='assets/1.gif' width="360" height="680"/>
