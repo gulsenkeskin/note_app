@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:note_app/db/notes_database.dart';
 import 'package:note_app/model/note.dart';
 import 'package:note_app/page/edit_note_page.dart';
@@ -43,21 +44,22 @@ class _NotesPageState extends State<NotesPage> {
             'Notes',
             style: TextStyle(fontSize: 24),
           ),
-          actions:const [ Icon(Icons.search), SizedBox(width: 12)],
+          actions: const [Icon(Icons.search), SizedBox(width: 12)],
         ),
         body: Center(
           child: isLoading
               ? const CircularProgressIndicator()
               : notes.isEmpty
-                  ? const Text(
+                  ? Text(
                       'Mevcut Notunuz Yok',
-                      style: TextStyle(color: Colors.white, fontSize: 22,  ),
+                      style: GoogleFonts.pacifico(
+                          fontSize: 20, color: Colors.white),
                     )
                   : buildNotes(),
         ),
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.black,
-          child:const Icon(Icons.add),
+          child: const Icon(Icons.add),
           onPressed: () async {
             await Navigator.of(context).push(
               MaterialPageRoute(builder: (context) => const AddEditNotePage()),
@@ -69,25 +71,25 @@ class _NotesPageState extends State<NotesPage> {
       );
 
   Widget buildNotes() => StaggeredGridView.countBuilder(
-    padding:const EdgeInsets.all(8),
-    itemCount: notes.length,
-    staggeredTileBuilder: (index) =>const StaggeredTile.fit(2),
-    crossAxisCount: 4,
-    mainAxisSpacing: 4,
-    crossAxisSpacing: 4,
-    itemBuilder: (context, index) {
-      final note = notes[index];
+        padding: const EdgeInsets.all(8),
+        itemCount: notes.length,
+        staggeredTileBuilder: (index) => const StaggeredTile.fit(2),
+        crossAxisCount: 4,
+        mainAxisSpacing: 4,
+        crossAxisSpacing: 4,
+        itemBuilder: (context, index) {
+          final note = notes[index];
 
-      return GestureDetector(
-        onTap: () async {
-          await Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => NoteDetailPage(noteId: note.id!),
-          ));
+          return GestureDetector(
+            onTap: () async {
+              await Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => NoteDetailPage(noteId: note.id!),
+              ));
 
-          refreshNotes();
+              refreshNotes();
+            },
+            child: NoteCardWidget(note: note, index: index),
+          );
         },
-        child: NoteCardWidget(note: note, index: index),
       );
-    },
-  );
 }
