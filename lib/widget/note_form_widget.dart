@@ -79,7 +79,7 @@ class NoteFormWidget extends StatelessWidget {
   Widget buildDescription() => TextFormField(
         maxLines: 5,
         initialValue: description,
-        style: GoogleFonts.dosis(color: Colors.white60, fontSize: 18),
+        style: GoogleFonts.rubik(color: Colors.white60, fontSize: 18),
         decoration: const InputDecoration(
           border: InputBorder.none,
           hintText: 'Bir şeyler yaz...',

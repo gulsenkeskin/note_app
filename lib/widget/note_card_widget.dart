@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:note_app/model/note.dart';
 
@@ -42,11 +43,13 @@ class NoteCardWidget extends StatelessWidget {
             ),
             Text(
               note.title,
-              style: const TextStyle(
-                  color: Colors.black,
+              style:  GoogleFonts.rubik(
+                  color: Colors.black87,
                   fontSize: 20,
-                  fontWeight: FontWeight.bold),
-            )
+                  fontWeight: FontWeight.w400),
+            ),
+            const SizedBox(height: 8,),
+            Text(note.description, style: GoogleFonts.rubik(        fontSize: 14, color: Colors.black54),)
           ],
         ),
       ),

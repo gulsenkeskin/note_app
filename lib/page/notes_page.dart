@@ -53,7 +53,7 @@ class _NotesPageState extends State<NotesPage> {
                   ? const Text(
                       'Mevcut Notunuz Yok',
                       style: TextStyle(
-                          fontSize: 20, color: Colors.white),
+                          fontSize: 22, color: Colors.white),
                     )
                   : buildNotes(),
         ),
