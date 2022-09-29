@@ -17,6 +17,7 @@ class NotesPage extends StatefulWidget {
 class _NotesPageState extends State<NotesPage> {
   late List<Note> notes;
   bool isLoading = false;
+  int number=0;
 
   @override
   void initState() {
@@ -61,9 +62,10 @@ class _NotesPageState extends State<NotesPage> {
           backgroundColor: Colors.black,
           child: const Icon(Icons.add),
           onPressed: () async {
-            await Navigator.of(context).push(
+         await Navigator.of(context).push(
               MaterialPageRoute(builder: (context) => const AddEditNotePage()),
             );
+
 
             refreshNotes();
           },

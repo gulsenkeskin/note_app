@@ -29,6 +29,7 @@ class NoteFormWidget extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           child: Column(
             mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 children: [
@@ -40,20 +41,22 @@ class NoteFormWidget extends StatelessWidget {
                   Switch(
                       value: isImportant ?? false,
                       onChanged: onChangedImportant),
-                  Expanded(
-                      child: Slider(
-                    value: (number ?? 0).toDouble(),
-                    min: 0,
-                    max: 5,
-                    divisions: 5,
-                    onChanged: (number) => onChangedNumber(number.toInt()),
-                  ))
+                  if (isImportant ?? false)
+                    Expanded(
+                        child: Slider(
+                      value: (number ?? 0).toDouble(),
+                      min: 0,
+                      max: 5,
+                      divisions: 5,
+                      onChanged: (number) => onChangedNumber(number.toInt()),
+                    ))
                 ],
               ),
               buildTitle(),
               const SizedBox(
                 height: 8,
               ),
+              if ((number ?? 0) > 0) Text('⭐' * number!),
               buildDescription(),
               const SizedBox(
                 height: 16,
