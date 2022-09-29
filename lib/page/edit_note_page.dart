@@ -74,6 +74,7 @@ class _AddEditNotePageState extends State<AddEditNotePage> {
 
       if (isUpdating) {
         await updateNote();
+        Navigator.of(context).pop();
       } else {
         await addNote();
       }

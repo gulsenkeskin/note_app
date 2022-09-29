@@ -7,9 +7,16 @@ final _lightColors = [
   Colors.amber.shade300,
   Colors.lightGreen.shade300,
   Colors.lightBlue.shade300,
-  Colors.orange.shade300,
+  Colors.orangeAccent[100],
   Colors.pinkAccent.shade100,
-  Colors.tealAccent.shade100
+  Colors.tealAccent.shade100,
+  Colors.purpleAccent[100],
+  Colors.yellowAccent[200],
+  Colors.pink[100],
+  Colors.lightGreenAccent,
+  Colors.lightBlueAccent[100],
+  Colors.orange.shade300,
+
 ];
 
 class NoteCardWidget extends StatelessWidget {
@@ -42,14 +49,14 @@ class NoteCardWidget extends StatelessWidget {
               height: 4,
             ),
             Text(
-              note.title,
-              style:  GoogleFonts.rubik(
+             note.title,
+              style:const TextStyle(
                   color: Colors.black87,
                   fontSize: 20,
-                  fontWeight: FontWeight.w400),
+                  fontWeight: FontWeight.w200),
             ),
             const SizedBox(height: 8,),
-            Text(note.description, style: GoogleFonts.rubik(        fontSize: 14, color: Colors.black54),)
+            Text(note.description, style: GoogleFonts.rubik(        fontSize: 16, color: Colors.black54,),)
           ],
         ),
       ),
