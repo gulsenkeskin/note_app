@@ -71,7 +71,6 @@ class _NoteDetailPageState extends State<NoteDetailPage> {
   Widget deleteButton() => IconButton(
       onPressed: () async {
         await NotesDatabase.instance.delete(widget.noteId);
-
         Navigator.of(context).pop();
       },
       icon:const Icon(Icons.delete));

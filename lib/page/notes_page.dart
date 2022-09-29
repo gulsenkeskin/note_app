@@ -51,7 +51,7 @@ class _NotesPageState extends State<NotesPage> {
               : notes.isEmpty
                   ? const Text(
                       'Mevcut Notunuz Yok',
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: Colors.white, fontSize: 22,  ),
                     )
                   : buildNotes(),
         ),
