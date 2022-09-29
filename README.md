@@ -1,5 +1,8 @@
 # Note App
 
+
+<img src='assets/1.gif' width="360" height="680"/>
+
 ### Used Package:
 
 sqflite: https://pub.dev/packages/sqflite/install
