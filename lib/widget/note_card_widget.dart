@@ -12,7 +12,7 @@ final _lightColors = [
 ];
 
 class NoteCardWidget extends StatelessWidget {
-  NoteCardWidget({Key? key, required this.note, required this.index})
+ const NoteCardWidget({Key? key, required this.note, required this.index})
       : super(key: key);
 
   final Note note;
