@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:note_app/page/notes_page.dart';
 
 Future main() async {
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
         title: title,
         themeMode: ThemeMode.dark,
         theme: ThemeData(
+          textTheme: GoogleFonts.pacificoTextTheme(),
           primaryColor: Colors.black,
           scaffoldBackgroundColor: Colors.blueGrey.shade900,
           appBarTheme: const AppBarTheme(
@@ -28,6 +30,9 @@ class MyApp extends StatelessWidget {
             elevation: 0,
           ),
         ),
-        home: NotesPage(),
+        home: const NotesPage(),
       );
+
+
+
 }

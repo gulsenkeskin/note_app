@@ -50,9 +50,9 @@ class _NotesPageState extends State<NotesPage> {
           child: isLoading
               ? const CircularProgressIndicator()
               : notes.isEmpty
-                  ? Text(
+                  ? const Text(
                       'Mevcut Notunuz Yok',
-                      style: GoogleFonts.pacifico(
+                      style: TextStyle(
                           fontSize: 20, color: Colors.white),
                     )
                   : buildNotes(),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class NoteFormWidget extends StatelessWidget {
   final bool? isImportant;
@@ -78,7 +79,7 @@ class NoteFormWidget extends StatelessWidget {
   Widget buildDescription() => TextFormField(
         maxLines: 5,
         initialValue: description,
-        style: const TextStyle(color: Colors.white60, fontSize: 18),
+        style: GoogleFonts.dosis(color: Colors.white60, fontSize: 18),
         decoration: const InputDecoration(
           border: InputBorder.none,
           hintText: 'Bir şeyler yaz...',
