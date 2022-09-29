@@ -79,14 +79,14 @@ class NotesDatabase {
   }
 
   Future _createDB(Database db, int version) async {
-    final idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
-    final textType = "TEXT NOT NULL";
-    final boolType = 'BOOLEAN NOT NULL';
-    final integerType = "INTEGER NOT NULL";
+    final idType = 'integer primary key autoincrement';
+    final textType = "text not null";
+    final boolType = 'boolean not null';
+    final integerType = "integer not null";
 
     //veri tabanı tablosu oluşturmak için
     await db.execute('''
-    CREATE TABLE $tableNotes (
+    create table $tableNotes (
     ${NoteFields.id} $idType,
     ${NoteFields.isImportant} $boolType,
     ${NoteFields.number} $integerType,
@@ -94,7 +94,7 @@ class NotesDatabase {
     ${NoteFields.description} $textType,
     ${NoteFields.time} $textType, 
     )
-    ''');
+   ''');
   }
 
   Future<Note> create(Note note) async {
