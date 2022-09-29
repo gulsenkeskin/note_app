@@ -32,7 +32,7 @@ class _NotesPageState extends State<NotesPage> {
   Future refreshNotes() async {
     setState(() => isLoading = true);
     //veri tabanından notları çeker :)
-    this.notes = await NotesDatabase.instance.readAllNotes();
+    notes = await NotesDatabase.instance.readAllNotes();
     setState(() => isLoading = false);
   }
 
@@ -43,7 +43,7 @@ class _NotesPageState extends State<NotesPage> {
             'Notes',
             style: TextStyle(fontSize: 24),
           ),
-          actions: [Icon(Icons.search), SizedBox(width: 12)],
+          actions:const [ Icon(Icons.search), SizedBox(width: 12)],
         ),
         body: Center(
           child: isLoading
@@ -60,7 +60,7 @@ class _NotesPageState extends State<NotesPage> {
           child:const Icon(Icons.add),
           onPressed: () async {
             await Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => AddEditNotePage()),
+              MaterialPageRoute(builder: (context) => const AddEditNotePage()),
             );
 
             refreshNotes();
