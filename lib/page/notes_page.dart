@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:note_app/db/notes_database.dart';
 import 'package:note_app/model/note.dart';
+import 'package:note_app/page/edit_note_page.dart';
 import 'package:note_app/page/note_detail_page.dart';
 
 class NotesPage extends StatefulWidget {
@@ -30,7 +31,7 @@ class _NotesPageState extends State<NotesPage> {
   Future refreshNotes() async {
     setState(() => isLoading = true);
     //veri tabanından notları çeker :)
-    this.notes = await NotesDatabase.instance.readAllNotes();
+    notes = await NotesDatabase.instance.readAllNotes();
     setState(() => isLoading = false);
   }
 
@@ -55,10 +56,10 @@ class _NotesPageState extends State<NotesPage> {
         ),
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.black,
-          child: Icon(Icons.add),
+          child:const Icon(Icons.add),
           onPressed: () async {
             //Todo
-            // await Navigator.of(context).push(MaterialPageRoute(builder: (context)=> ))
+            await Navigator.of(context).push(MaterialPageRoute(builder: (context)=> AddEditNotePage()));
             refreshNotes();
           },
         ),
@@ -77,11 +78,12 @@ class _NotesPageState extends State<NotesPage> {
           return GestureDetector(
             onTap: () async {
               //TODO
-              await Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => NoteDetailPage()));
+              await Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => NoteDetailPage(noteId: note.id!)));
               refreshNotes();
             },
-            //todo,
+            //todo
+            //  child: NoteCardWidget(note:note,index:index),
           );
         },
       );
