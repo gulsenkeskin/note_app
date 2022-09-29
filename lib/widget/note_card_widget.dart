@@ -16,11 +16,10 @@ final _lightColors = [
   Colors.lightGreenAccent,
   Colors.lightBlueAccent[100],
   Colors.orange.shade300,
-
 ];
 
 class NoteCardWidget extends StatelessWidget {
- const NoteCardWidget({Key? key, required this.note, required this.index})
+  const NoteCardWidget({Key? key, required this.note, required this.index})
       : super(key: key);
 
   final Note note;
@@ -33,7 +32,7 @@ class NoteCardWidget extends StatelessWidget {
     final minHeight = getMinHeight(index);
 
     return Card(
-      color: color,
+      color:note.isImportant?? false ? Colors.redAccent: color,
       child: Container(
         constraints: BoxConstraints(minHeight: minHeight),
         padding: const EdgeInsets.all(8),
@@ -49,14 +48,23 @@ class NoteCardWidget extends StatelessWidget {
               height: 4,
             ),
             Text(
-             note.title,
+              note.title,
               style:const TextStyle(
-                  color: Colors.black87,
+                  color:
+                   Colors.black87,
                   fontSize: 20,
                   fontWeight: FontWeight.w200),
             ),
-            const SizedBox(height: 8,),
-            Text(note.description, style: GoogleFonts.rubik(        fontSize: 16, color: Colors.black54,),)
+            const SizedBox(
+              height: 8,
+            ),
+            Text(
+              note.description,
+              style: GoogleFonts.rubik(
+                fontSize: 16,
+                color: Colors.black54,
+              ),
+            )
           ],
         ),
       ),

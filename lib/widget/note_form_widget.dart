@@ -26,12 +26,17 @@ class NoteFormWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) => SingleChildScrollView(
         child: Padding(
-          padding:const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               Row(
                 children: [
+                  if (isImportant ?? false)
+                    const Text(
+                      "Önemli",
+                      style: TextStyle(color: Colors.white60),
+                    ),
                   Switch(
                       value: isImportant ?? false,
                       onChanged: onChangedImportant),
