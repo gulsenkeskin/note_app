@@ -92,7 +92,7 @@ class NotesDatabase {
     ${NoteFields.number} $integerType,
     ${NoteFields.title} $textType,
     ${NoteFields.description} $textType,
-    ${NoteFields.time} $textType, 
+    ${NoteFields.time} $textType
     )
    ''');
   }
