@@ -6,13 +6,18 @@ import 'package:note_app/model/note.dart';
 final _lightColors = [
   Colors.amber.shade300,
   Colors.lightGreen.shade300,
+  Colors.indigo[100],
+  Colors.pink[100],
   Colors.lightBlue.shade300,
   Colors.orangeAccent[100],
+  Colors.indigo[200],
+  Colors.teal[100],
   Colors.pinkAccent.shade100,
+  Colors.brown[200],
   Colors.tealAccent.shade100,
   Colors.purpleAccent[100],
   Colors.yellowAccent[200],
-  Colors.pink[100],
+  Colors.pink[200],
   Colors.lightGreenAccent,
   Colors.lightBlueAccent[100],
   Colors.orange.shade300,
@@ -32,7 +37,7 @@ class NoteCardWidget extends StatelessWidget {
     final minHeight = getMinHeight(index);
 
     return Card(
-      color:note.isImportant?? false ? Colors.redAccent: color,
+      color: note.isImportant ?? false ? Colors.red : color,
       child: Container(
         constraints: BoxConstraints(minHeight: minHeight),
         padding: const EdgeInsets.all(8),
@@ -40,18 +45,23 @@ class NoteCardWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              time,
-              style: TextStyle(color: Colors.grey.shade700),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  time,
+                  style: TextStyle(color: Colors.grey.shade700),
+                ),
+                if (note.number > 0) Text('⭐' * note.number, style: TextStyle(fontSize: 10),)
+              ],
             ),
             const SizedBox(
               height: 4,
             ),
             Text(
               note.title,
-              style:const TextStyle(
-                  color:
-                   Colors.black87,
+              style: const TextStyle(
+                  color: Colors.black87,
                   fontSize: 20,
                   fontWeight: FontWeight.w200),
             ),

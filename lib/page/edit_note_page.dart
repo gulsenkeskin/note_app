@@ -97,7 +97,7 @@ class _AddEditNotePageState extends State<AddEditNotePage> {
   Future addNote() async {
     final note = Note(
       title: title,
-      isImportant: true,
+      isImportant: isImportant,
       number: number,
       description: description,
       createdTime: DateTime.now(),
