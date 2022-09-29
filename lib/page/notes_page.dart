@@ -25,7 +25,6 @@ class _NotesPageState extends State<NotesPage> {
     super.dispose();
   }
 
-
   Future refreshNotes() async {
     setState(() => isLoading = true);
     //veri tabanından notları çeker :)
@@ -34,7 +33,13 @@ class _NotesPageState extends State<NotesPage> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(
+          title:const Text(
+            'Notes',
+            style: TextStyle(fontSize: 24),
+          ),
+          actions: [],
+        ),
+      );
 }
